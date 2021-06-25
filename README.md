@@ -10,7 +10,7 @@ I preferr you have a qt install. The source code of this repository contains 2 q
 Parallel coding makes it eayser.
 
 This source code is a basic example how to use the kdl kinematic library.
-+1 You could make any type of kinematic chain with linuxcnc now.
++1 You could make any type of kinematic model with linuxcnc now, even when you are a dummy coder.
 
 
 
