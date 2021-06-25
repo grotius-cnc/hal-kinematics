@@ -1,0 +1,5 @@
+.
+/opt/linuxcnc/include
+/opt/linuxcnc/lib
+/usr/local/include/kdl
+src

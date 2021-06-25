@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Qt -> Projects -> Build & Run -> Executable -> /home/user/Desktop/Linux-Embedded/linux-hal/halcompile-kinematic/runtest
+
+HAL_TOP_DIR="/opt/linuxcnc"
+COMP_SO_DIR="/home/user/Desktop/Linux-Embedded/linux-hal/halcompile-kinematic"
+
+cp -rf $COMP_SO_DIR/kinematic.so $HAL_TOP_DIR/rtlib/
+
+cp -rf $COMP_SO_DIR/build-next-Desktop-Debug/libnext.so $HAL_TOP_DIR/rtlib/
+cp -rf $COMP_SO_DIR/build-next-Desktop-Debug/libnext.so.1 $HAL_TOP_DIR/rtlib/
+cp -rf $COMP_SO_DIR/build-next-Desktop-Debug/libnext.so.1.0 $HAL_TOP_DIR/rtlib/
+cp -rf $COMP_SO_DIR/build-next-Desktop-Debug/libnext.so.1.0.0 $HAL_TOP_DIR/rtlib/
+
+sudo ldconfig $HAL_TOP_DIR/rtlib/
+
+# Add libnext also to the Makefile -L/path.. -lnext
+# Don't edit the Makefile with qt, use a normal texteditor.
+
+# For example, how to compile a .cpp file into a shared .so lib by terminal:
+# g++ -c -Wall -Werror -fPIC testlib.cpp
+# g++ -shared -o libtest.so testlib.o
+
+cd $HAL_TOP_DIR/scripts && . ./rip-environment
+#cd $HAL_TOP_DIR/bin
+	# Load rt component:
+	halcmd loadrt threads name1=base-thread fp1=0 period1=25000 name2=servo-thread period2=1000000
+ 	halcmd loadrt kinematic
+ 	halcmd addf kinematic servo-thread
+ 	#halcmd setp test.bit-in true
+ 	
+ 	halcmd \-f $COMP_SO_DIR/machinemodel.hal
+ 	
+ 	halcmd start
+
+ 	# Start hal programs to debug:
+	#halmeter
+	halshow
+	#halscope 
+	
+	# Unload rt components and clean up hal:
+	halrun -U
+
+
+
