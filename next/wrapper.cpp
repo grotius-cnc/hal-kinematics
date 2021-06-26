@@ -1,5 +1,3 @@
-// When using as qt project, include line 5.
-//#include "next_global.h"
 #include <string>
 
 #ifndef ULAPI
