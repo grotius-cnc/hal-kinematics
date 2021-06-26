@@ -44,7 +44,8 @@ The usage workflow.
 
 The runtest file has the workflow how to load the component.
 It is preferred to use this file, or edit this file to your needs.
-But you load the kinematic.so manually. Start linuxcnc and open up "show hal configuration"
+
+You can load the kinematic.so manually. Start linuxcnc and open up "show hal configuration"
 
 ```
   stop
