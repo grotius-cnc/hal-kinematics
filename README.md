@@ -13,7 +13,7 @@ This source code is a basic example how to use the kdl kinematic library within 
 +1 You could make any type of kinematic model with linuxcnc now, even when you are a dummy coder.
 
 
-The install workflow, tested with a run in place linuxcnc version :
+# The install workflow, tested with a linuxcnc "run in place" version.
 
 - Compile the first qt project. 
 ```
@@ -40,10 +40,15 @@ The install workflow, tested with a run in place linuxcnc version :
   7. stage two is completed.
 ```
 
-The usage workflow.
+# The usage workflow.
 
 The runtest file has the workflow how to load the component.
 It is preferred to use this file, or edit this file to your needs.
+
+```
+	Set up your machinemodel : machinemodel.hal
+	Use the /doc/kuka pdf file as reference.
+```
 
 You can load the kinematic.so manually. Start linuxcnc and open up "show hal configuration"
 
@@ -61,7 +66,27 @@ Now you can insert hal commands. For the hal pin reference file you can take a l
   setp kinematic.cart-x 500
 ```
 
+# Things to consider.
 
+```
+	1. The calculated cartesian tcp point is for example x600, y0, z550. 
+	If you want to run a gcode, you have to create a extra set of xyz variables to offset
+	the current tcp to your gcode. Or create a button that set's the current tcp offset to zero. (gcode starpoint).
+	
+	2. The gcode xyz output can be used as cartesian input. It will convert the xyz to joint values when using "ik_mode 1".
+	
+	3. The source code inverse kinematics (ik) is performed from machine init position.
+	You can also expand to source code to use ik from current position. You have to create a extra variable for this.
+	
+	4. You could add a extra variable for the ammount of inverse kinematics iterations. They are now fixed at ~100.
+	This could reduce the total program cyclus time. 
+	
+	5. When using the kinematic.so every servo-cycle, set the time interval=0.
+	
+	6. This source code is just an example of the kdl library that uses a kuka robot in this case.
+	a more generic driver can be written. This is just a "kick off".
+	If you want to write a generic machinemodel driver, you are welcome !.
+```
 
 
 
