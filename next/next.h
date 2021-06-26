@@ -1,7 +1,8 @@
 #ifndef NEXT_H
 #define NEXT_H
 
-#include "next_global.h"
+// When using as qt project, include line 5.
+//#include "next_global.h"
 #include <string>
 
 #ifndef ULAPI
@@ -97,8 +98,8 @@ struct data {
     int Ik_mode;
 };
 
-class NEXT_EXPORT Next
-{
+//class NEXT_EXPORT Next
+class Next {
 public:
 
     Next();
