@@ -677,7 +677,29 @@ compiler_clean: compiler_moc_predefs_clean
 
 ####### Compile
 
-next.o: next.cpp next.h
+next.o: next.cpp next.h \
+		next_global.h \
+		/opt/qt-creator/5.15.1/gcc_64/include/QtCore/qglobal.h \
+		/opt/qt-creator/5.15.1/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/opt/qt-creator/5.15.1/gcc_64/include/QtCore/qconfig.h \
+		/opt/qt-creator/5.15.1/gcc_64/include/QtCore/qtcore-config.h \
+		/opt/qt-creator/5.15.1/gcc_64/include/QtCore/qsystemdetection.h \
+		/opt/qt-creator/5.15.1/gcc_64/include/QtCore/qprocessordetection.h \
+		/opt/qt-creator/5.15.1/gcc_64/include/QtCore/qcompilerdetection.h \
+		/opt/qt-creator/5.15.1/gcc_64/include/QtCore/qtypeinfo.h \
+		/opt/qt-creator/5.15.1/gcc_64/include/QtCore/qsysinfo.h \
+		/opt/qt-creator/5.15.1/gcc_64/include/QtCore/qlogging.h \
+		/opt/qt-creator/5.15.1/gcc_64/include/QtCore/qflags.h \
+		/opt/qt-creator/5.15.1/gcc_64/include/QtCore/qatomic.h \
+		/opt/qt-creator/5.15.1/gcc_64/include/QtCore/qbasicatomic.h \
+		/opt/qt-creator/5.15.1/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/opt/qt-creator/5.15.1/gcc_64/include/QtCore/qgenericatomic.h \
+		/opt/qt-creator/5.15.1/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/opt/qt-creator/5.15.1/gcc_64/include/QtCore/qatomic_msvc.h \
+		/opt/qt-creator/5.15.1/gcc_64/include/QtCore/qglobalstatic.h \
+		/opt/qt-creator/5.15.1/gcc_64/include/QtCore/qmutex.h \
+		/opt/qt-creator/5.15.1/gcc_64/include/QtCore/qnumeric.h \
+		/opt/qt-creator/5.15.1/gcc_64/include/QtCore/qversiontagging.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o next.o next.cpp
 
 ####### Install
