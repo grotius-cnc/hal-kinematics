@@ -1,1 +1,3 @@
-This is a qt project that produces the libnex.so file.
+For non qt users, you can create the libnext.so library by running :
+
+$ ./install.sh
