@@ -32,7 +32,7 @@ The workflow, tested with a run in place linuxcnc version :
 
 - Compile the second qt project.
 ```
-  1. open tje second qt project "qt-test.creator"
+  1. open the second qt project "qt-test.creator"
   2. open the Makefile in a text editor (not in qt!). Edit your filepath at line 4 (points to halcompile executable), 28 (points to libnext)
   3. qt->projects->build->set build directory->your_path_to_git_clone
   4. qt->projects->run->set executable->your_path_to/runtest
