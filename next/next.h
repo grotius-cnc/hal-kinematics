@@ -1,7 +1,6 @@
 #ifndef NEXT_H
 #define NEXT_H
 
-// When using as qt project, include line 5.
 #include "next_global.h"
 #include <string>
 
@@ -98,8 +97,7 @@ struct data {
     int Ik_mode;
 };
 
-//class NEXT_EXPORT Next
-class Next {
+class NEXT_EXPORT Next{
 public:
 
     Next();
