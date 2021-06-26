@@ -13,8 +13,7 @@ This source code is a basic example how to use the kdl kinematic library within 
 +1 You could make any type of kinematic model with linuxcnc now, even when you are a dummy coder.
 
 
-The workflow, tested with a run in place linuxcnc version :
-
+The install workflow, tested with a run in place linuxcnc version :
 
 - Compile the first qt project. 
 ```
@@ -40,6 +39,36 @@ The workflow, tested with a run in place linuxcnc version :
   6. This will produce "kinematic.so" and will run the app.
   7. stage two is completed.
 ```
+
+The usage workflow.
+
+The runtest file has the workflow how to load the component.
+It is preferred to use this file, or edit this file to your needs.
+But you load the kinematic.so manually. Start linuxcnc and open up "show hal configuration"
+
+```
+  stop
+	loadrt threads name1=base-thread fp1=0 period1=25000 name2=servo-thread period2=1000000
+  loadrt kinematic
+ 	addf kinematic servo-thread
+ 	\-f your_path_to/machinemodel.hal
+ 	start
+```
+
+Now you can insert hal commands. For the hal pin reference file you can take a look at the "kinematic.comp" file.
+```
+  setp kinematic.cart-x 500
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
