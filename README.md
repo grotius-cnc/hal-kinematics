@@ -17,24 +17,29 @@ The workflow, tested with a run in place linuxcnc version :
 
 
 - Compile the first qt project. 
-1. Open the first qt project "/next/next.pro"    
-2. "cntr+r" Run
-3. This will produce "libnext.so, libnext.1.so, libnext.1.0.so, libnext.so.1.0.0" 
-4. Stage one is now completed.
+```
+  1. Open the first qt project "/next/next.pro"    
+  2. "cntr+r" Run
+  3. This will produce "libnext.so, libnext.1.so, libnext.1.0.so, libnext.so.1.0.0" 
+  4. Stage one is now completed.
+```
 
 - Edit the Runtest file.
-1. open "runtest"
-2. edit line 7 (linuxcnc base dir), 8 (the dir where kinematic.so is produced)
+```
+  1. open "runtest"
+  2. edit line 7 (linuxcnc base dir), 8 (the dir where kinematic.so is produced)
+```
 
 - Compile the second qt project.
-1. open tje second qt project "qt-test.creator"
-2. open the Makefile in a text editor (not in qt!). Edit your filepath at line 4 (points to halcompile executable), 28 (points to libnext)
-3. qt->projects->build->set build directory->your_path_to_git_clone
-4. qt->projects->run->set executable->your_path_to/runtest
-5. "cntr+r" Run
-6. This will produce "kinematic.so" and will run the app.
-7. stage two is completed.
-
+```
+  1. open tje second qt project "qt-test.creator"
+  2. open the Makefile in a text editor (not in qt!). Edit your filepath at line 4 (points to halcompile executable), 28 (points to libnext)
+  3. qt->projects->build->set build directory->your_path_to_git_clone
+  4. qt->projects->run->set executable->your_path_to/runtest
+  5. "cntr+r" Run
+  6. This will produce "kinematic.so" and will run the app.
+  7. stage two is completed.
+```
 
 
 
