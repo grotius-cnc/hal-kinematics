@@ -24,7 +24,7 @@ module = $(patsubst %.o,%.so,$(obj-m))
 EXTRA_CFLAGS := $(filter-out -Wframe-larger-than=%,$(EXTRA_CFLAGS))
 
 $(module): $(files-to-compile)
-	$(CC) -shared -o $@ $(files-to-compile) -Wl,-rpath,$(LIBDIR) -L$(LIBDIR) -llinuxcnchal -lrt -L/home/user/Desktop/Linux-Embedded/linux-hal/halcompile-kinematic/build-next-Desktop-Debug -lnext
+	$(CC) -shared -o $@ $(files-to-compile) -Wl,-rpath,$(LIBDIR) -L$(LIBDIR) -llinuxcnchal -lrt -L/home/user/Desktop/Linux-Embedded/linux-hal/halcompile-kinematic/next -lnext
 
 %.o: %.c
 	$(CC) -o $@ $(EXTRA_CFLAGS) -Os -c $<

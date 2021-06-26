@@ -1,16 +1,20 @@
 #!/bin/bash
 
-# Qt -> Projects -> Build & Run -> Executable -> /home/user/Desktop/Linux-Embedded/linux-hal/halcompile-kinematic/runtest
+# make clean
+# make all
+# make install
 
 HAL_TOP_DIR="/opt/linuxcnc"
 COMP_SO_DIR="/home/user/Desktop/Linux-Embedded/linux-hal/halcompile-kinematic"
 
+rm -rf $HAL_TOP_DIR/rtlib/kinematic.so 
 cp -rf $COMP_SO_DIR/kinematic.so $HAL_TOP_DIR/rtlib/
 
-cp -rf $COMP_SO_DIR/build-next-Desktop-Debug/libnext.so $HAL_TOP_DIR/rtlib/
-cp -rf $COMP_SO_DIR/build-next-Desktop-Debug/libnext.so.1 $HAL_TOP_DIR/rtlib/
-cp -rf $COMP_SO_DIR/build-next-Desktop-Debug/libnext.so.1.0 $HAL_TOP_DIR/rtlib/
-cp -rf $COMP_SO_DIR/build-next-Desktop-Debug/libnext.so.1.0.0 $HAL_TOP_DIR/rtlib/
+# When using qt activate this:
+cp -rf $COMP_SO_DIR/next/libnext.so $HAL_TOP_DIR/rtlib/
+cp -rf $COMP_SO_DIR/next/libnext.so.1 $HAL_TOP_DIR/rtlib/
+cp -rf $COMP_SO_DIR/next/libnext.so.1.0 $HAL_TOP_DIR/rtlib/
+cp -rf $COMP_SO_DIR/next/libnext.so.1.0.0 $HAL_TOP_DIR/rtlib/
 
 sudo ldconfig $HAL_TOP_DIR/rtlib/
 
