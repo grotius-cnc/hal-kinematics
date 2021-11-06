@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# Let linux know where to find libraries.
+sudo ldconfig /opt/hal-core/rtlib/
+
+# Copy module to /rtlib
+rm -rf /opt/hal-core/rtlib/hal_kinematic.so
+cp -rf hal_kinematic.so /opt/hal-core/rtlib/
+
+# Copy c++ libraries to /rtlib
+cp -rf /opt/hal-core/src/hal/components/kinematic/cpp_interface/libkinematic.so /opt/hal-core/rtlib
+cp -rf /opt/hal-core/src/hal/components/kinematic/cpp_interface/libkinematic.so.1 /opt/hal-core/rtlib
+cp -rf /opt/hal-core/src/hal/components/kinematic/cpp_interface/libkinematic.so.1.0 /opt/hal-core/rtlib
+cp -rf /opt/hal-core/src/hal/components/kinematic/cpp_interface/libkinematic.so.1.0.0 /opt/hal-core/rtlib
+
+# Clean previous hal-core sessions
+/opt/hal-core/scripts/./halrun -U
+
+# Start hal-core
+cd /opt/hal-core/scripts && . ./rip-environment
+
+cd /opt/hal-core/bin/
+
+        ./halcmd stop
+
+        ./halcmd loadrt threads name1=base-thread fp1=0 period1=25000 name2=servo-thread period2=1000000
+
+        ./halcmd loadrt hal_kinematic machines=2 joints=6,6 iterations=100 debug=0
+
+        ./halcmd addf hal_kinematic servo-thread
+
+        ./halcmd setp hal_kinematic.enable 1
+
+        ./halcmd \-f /opt/hal-core/src/hal/components/kinematic/hal/machinemodel.hal
+
+        # Perform a inverse kinematics from a given cart xyz tcp value.
+        ./halcmd setp hal_kinematic.mode-fk 0
+        ./halcmd setp hal_kinematic.mode-ik-init 1
+        ./halcmd setp hal_kinematic.mode-ik-current 0
+
+        ./halcmd setp hal_kinematic.0.cartx-in 500
+        ./halcmd setp hal_kinematic.0.carty-in 0
+        ./halcmd setp hal_kinematic.0.cartz-in 500
+        ./halcmd setp hal_kinematic.0.eulerx-in 0
+        ./halcmd setp hal_kinematic.0.eulery-in 0
+        ./halcmd setp hal_kinematic.0.eulerz-in 0
+
+        ./halcmd setp hal_kinematic.1.cartx-in 400
+        ./halcmd setp hal_kinematic.1.carty-in 100
+        ./halcmd setp hal_kinematic.1.cartz-in 600
+        ./halcmd setp hal_kinematic.1.eulerx-in 0
+        ./halcmd setp hal_kinematic.1.eulery-in 0
+        ./halcmd setp hal_kinematic.1.eulerz-in 0
+
+        # Check output joint values in halview.
+
+        ./halcmd start
+
+# Start halview
+/opt/halview/./halview &
+
+
+
